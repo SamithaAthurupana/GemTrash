@@ -5,5 +5,5 @@ public enum GemTreatment {
     NATURAL,
     UNHEATED,
     DIFFUSION_TREATED,
-    FRACTION_FILLED
+    FRACTION_FILLED,
 }
