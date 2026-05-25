@@ -6,6 +6,8 @@ import com.srilankagem.gembackend.gem.models.GemType;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,7 +26,7 @@ public class GemStoneRequest {
 
     @NotNull
     @DecimalMin(value = "0.01", message = "value must be grater than 0.1")
-    private Double caratWeight;
+    private BigDecimal caratWeight;
 
     @NotNull(message = "origin is require")
     private GemOrigin origin;
@@ -34,7 +36,7 @@ public class GemStoneRequest {
 
     @NotNull
     @DecimalMin(value = "0.01", message = "value must be grater than 0.1")
-    private Double pricePerCarat;
+    private BigDecimal pricePerCarat;
 
     @NotNull
     @Min(value = 0, message = "value must be grater than 0")

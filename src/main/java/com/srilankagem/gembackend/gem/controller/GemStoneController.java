@@ -1,5 +1,6 @@
 package com.srilankagem.gembackend.gem.controller;
 
+import com.srilankagem.gembackend.common_exception.ResourceNotFoundException;
 import com.srilankagem.gembackend.gem.dto.GemStoneRequest;
 import com.srilankagem.gembackend.gem.dto.GemStoneResponse;
 
@@ -23,19 +24,22 @@ public class GemStoneController {
     private final GemStoneService gemStoneService;
 
     @GetMapping
-    public ResponseEntity<Page<GemStoneResponse>> getAllGemStones(@PageableDefault(size = 20, sort = "color") Pageable pageable){
-        return ResponseEntity.ok(gemStoneService.getAllGemStone(pageable));
-    }
+    public Page<GemStoneResponse> getAllGemStones(@PageableDefault(size = 20,sort = "color") Pageable pageable) {
 
+        return gemStoneService.getAllGemStone(pageable);
+
+    }
     @PostMapping
-    public ResponseEntity<GemStoneResponse> createGemStone(@RequestBody GemStoneRequest request){
+    public ResponseEntity<GemStoneResponse> createGemStone (@RequestBody GemStoneRequest request){
         return ResponseEntity.status(HttpStatus.CREATED)
-                .header("Custom-Head", "Sending Custom Header")
+                .header("Custom Head", "Sending Custom Header")
                 .body(gemStoneService.createGemStone(request));
     }
-    @GetMapping("{/id}")
-    public RequestEntity<GemStoneResponse> getGemStoneById(@PathVariable Long id){
-        return ResponseEntity.ok(gemStoneService.getGemStoneById());
+
+    @GetMapping("/id")
+    public ResponseEntity<GemStoneResponse> getById(@PathVariable Long id) throws ResourceNotFoundException {
+        return ResponseEntity.status(HttpStatus.FOUND)
+                .body(gemStoneService.getGemStoneById(id));
     }
 
 }
