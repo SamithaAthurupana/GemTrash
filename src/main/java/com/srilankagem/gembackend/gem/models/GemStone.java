@@ -40,7 +40,7 @@ public class GemStone {
     private GemTreatment treatment;
 
     @Column(nullable = false)
-    private Double pricePerCarate;
+    private Double pricePerCarat;
 
     @Column(nullable = false)
     private Integer stockQuantity;

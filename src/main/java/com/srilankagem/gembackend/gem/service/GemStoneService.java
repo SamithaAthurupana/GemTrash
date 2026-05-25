@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClient;
 
 @Service
 @RequiredArgsConstructor
@@ -27,11 +26,13 @@ public class GemStoneService {
                 .gemCode(request.getGemCode())
                 .type(request.getType())
                 .origin(request.getOrigin())
-                .caratWeight(request.getCarateWeight())
+                .caratWeight(request.getCaratWeight())
+                .color(request.getColor())
                 .description(request.getDescription())
                 .stockQuantity(request.getStockQuantity())
-                .pricePerCarate(request.getPricePerCarat())
+                .pricePerCarat(request.getPricePerCarat())
                 .description(request.getDescription())
+                .treatment(request.getTreatment())
                 .active(true)
                 .build();
 
@@ -47,12 +48,16 @@ public class GemStoneService {
                 .caratWeight(gemStone.getCaratWeight())
                 .origin(gemStone.getOrigin())
                 .treatment(gemStone.getTreatment())
-                .pricePerCarat(gemStone.getPricePerCarate())
+                .pricePerCarat(gemStone.getPricePerCarat())
                 .stockQuantity(gemStone.getStockQuantity())
                 .certified(gemStone.isCertified())
                 .createdAt(gemStone.getCreatedAt())
                 .updatedAt(gemStone.getUpdatedAt())
                 .description(gemStone.getDescription())
                 .build();
+    }
+
+    public GemStoneResponse getGemStoneById(Long id) {
+        return toResponse(gemStoneRepository.findById(id).get());
     }
 }

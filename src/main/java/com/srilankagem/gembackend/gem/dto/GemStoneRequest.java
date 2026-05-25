@@ -24,7 +24,7 @@ public class GemStoneRequest {
 
     @NotNull
     @DecimalMin(value = "0.01", message = "value must be grater than 0.1")
-    private Double carateWeight;
+    private Double caratWeight;
 
     @NotNull(message = "origin is require")
     private GemOrigin origin;
